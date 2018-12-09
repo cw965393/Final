@@ -1,0 +1,43 @@
+@model IEnumerable<BuffteksWebsite.Models.Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Projects</h1>
+
+<p>
+    <a asp-action="Create"><button type="button" class="btn btn-primary">Create New</button></a>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectDescription)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectDescription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID"><button type="button" class="btn btn-primary btn-sm">Edit</button></a> |
+                <a asp-action="Details" asp-route-id="@item.ID"><button type="button" class="btn btn-primary btn-sm">Details</button></a> |
+                <a asp-action="Delete" asp-route-id="@item.ID"><button type="button" class="btn btn-primary btn-sm">Delete</button></a>
+                <!--<span class="text-danger">TODO: We need to cascade delete members if a project is deleted</span>-->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
